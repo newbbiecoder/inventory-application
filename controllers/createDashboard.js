@@ -1,5 +1,7 @@
 function createDashboard(req, res) {
-    res.send("Working like a charm");
+    res.render("dashboard", {
+        title: "Dashboard"
+    })
 }
 
 module.exports = {
