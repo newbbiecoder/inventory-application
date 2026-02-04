@@ -1,24 +1,26 @@
 <html>
     <head>
         <title><%= title %></title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <header>
             <div class="logo">
-                <!-- <img src="" alt=""> -->
+                <img src="assets/images/store.png" alt="store" height="35">
                 <p>FreshStock</p>
             </div>
             <div class="user">
-                <!-- <img src="" alt=""> -->
-                <p>User</p>
+                <img src="assets/images/luffy-icon.jpg" alt="luffy">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#4d4c4c"></path> </g></svg>
             </div>
         </header>
-        <div>
+        <div class="container">
             <nav>
                 <div class="dashboard">
-                    <!-- <img src="" alt=""> -->
+                    <img src="assets/images/dashboard-icon.png" alt="dashboard" height="30">
                     <p>Dashboard</p>
                 </div>
+                <p class="categories-select" style="padding-left: 0.2rem; margin-bottom: 0;">Categories</p>
                 <div class="categories">
                     <ul>
                         <li>Vegetables</li>
@@ -37,7 +39,7 @@
                         <article class="total-categories">
                             <div>
                                 <p>Total Categories</p>
-                                <!-- <img src="" alt=""> -->
+                                <img src="assets/images/all-categories-icon.png" alt="total-categories" height="35">
                             </div>
                             <p>6</p>
                         </article>
@@ -45,7 +47,7 @@
                         <article class="total-inventory">
                             <div>
                                 <p>Total items in inventory</p>
-                                <!-- <img src="" alt=""> -->
+                                <img src="assets/images/total-items-icon.png" alt="total-items" height="35">
                             </div>
                             <p>42</p>
                         </article>
@@ -53,7 +55,7 @@
                         <article class="low-stock-count">
                             <div>
                                 <p>Low-stock items</p>
-                                <!-- <img src="" alt=""> -->
+                                <img src="assets/images/low-stock-icon.png" alt="low-stock" height="35">
                             </div>
                             <p>5</p>
                         </article>
@@ -61,7 +63,7 @@
                         <article class="expiring-soon-count">
                             <div>
                                 <p>Expiring soon</p>
-                                <!-- <img src="" alt=""> -->
+                                <img src="assets/images/expiring-soon-icon.png" alt="expiring-soon" height="35">
                             </div>
                             <p>3</p>
                         </article>
@@ -89,5 +91,8 @@
                 </section>
             </main>
         </div>
+        <footer>
+            © 2026 FreshStock. All rights reserved.
+        </footer>
     </body>
 </html>
