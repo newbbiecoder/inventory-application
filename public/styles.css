@@ -98,6 +98,11 @@ nav {
     gap: 0.1rem;
     list-style-type: none;
 
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
     li {
         padding: 1rem 0.5rem;
         border-radius: 13px;

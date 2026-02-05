@@ -4,5 +4,15 @@
     </head>
     <body>
         <h1><%= title %></h1>
+        <ul>
+            <% items.forEach((item) => { %>
+                <li>
+                    <p>Name: <%= item.name %></p>
+                    <p>Quantity: <%= item.quantity %></p>
+                    <p>Unit: <%= item.unit %></p>
+                    <p>Expiry Data: <%= item.expiry_date %></p>
+                </li>
+            <% }) %>
+        </ul>
     </body>
 </html>
