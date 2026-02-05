@@ -4,6 +4,13 @@ function createDashboard(req, res) {
     })
 }
 
+function categoryGet(req, res){
+    res.render("category", {
+        title: req.params.slug,
+    })
+}
+
 module.exports = {
     createDashboard,
+    categoryGet
 }

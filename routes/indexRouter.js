@@ -1,8 +1,8 @@
 const {Router} = require("express");
-const {createDashboard} = require("../controllers/createDashboard");
+const {createDashboard, categoryGet} = require("../controllers/createDashboard");
 
 const indexRouter = Router();
 
 indexRouter.get("/", createDashboard);
-
+indexRouter.get("/categories/:slug", categoryGet);
 module.exports = indexRouter;
