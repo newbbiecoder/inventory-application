@@ -1,0 +1,46 @@
+<nav>
+    <% if(onDash) { %>
+        <a href="/">
+            <div class="dashboard onDashEffect">
+                <img src="/assets/images/dashboard-icon.png" alt="dashboard" height="30">
+                <p>Dashboard</p>
+            </div>
+        </a>
+    <% } %>
+    <% if(!onDash) { %>
+        <a href="/">
+            <div class="dashboard removeDashEffect">
+                <img src="/assets/images/dashboard-icon.png" alt="dashboard" height="30">
+                <p>Dashboard</p>
+            </div>
+        </a>
+    <% } %>
+    <p class="categories-select" style="padding-left: 0.2rem; margin-bottom: 0;">Categories</p>
+    <div class="categories">
+        <ul>
+            <li class="<%= title === 'vegetables' ? 'active' : '' %>">
+                <a href="/categories/vegetables">Vegetables</a>
+            </li>
+
+            <li class="<%= title === 'fruits' ? 'active' : '' %>">
+                <a href="/categories/fruits">Fruits</a>
+            </li>
+            
+            <li class="<%= title === 'dairy' ? 'active' : '' %>">
+                <a href="/categories/dairy">Dairy</a>
+            </li>
+
+            <li class="<%= title === 'grains' ? 'active' : '' %>">
+                <a href="/categories/grains">Grains</a>
+            </li>
+            
+            <li class="<%= title === 'snacks' ? 'active' : '' %>">
+                <a href="/categories/snacks">Snacks</a>
+            </li>
+            
+            <li class="<%= title === 'beverages' ? 'active' : '' %>">
+                <a href="/categories/beverages">Beverages</a>
+            </li>
+        </ul>
+    </div>
+</nav>

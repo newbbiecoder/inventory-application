@@ -3,6 +3,7 @@ const db = require("../db/queries");
 function createDashboard(req, res) {
     res.render("dashboard", {
         title: "Dashboard",
+        onDash: true,
     })
 }
 
@@ -18,7 +19,8 @@ async function categoryGet(req, res){
     console.log(items)
     res.render("category", {
         title: slug,
-        items: items
+        items: items,
+        onDash: false,
     })
 }
 

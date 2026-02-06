@@ -1,18 +1,47 @@
 <html>
     <head>
         <title><%= title %></title>
+        <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
-        <h1><%= title %></h1>
-        <ul>
-            <% items.forEach((item) => { %>
-                <li>
-                    <p>Name: <%= item.name %></p>
-                    <p>Quantity: <%= item.quantity %></p>
-                    <p>Unit: <%= item.unit %></p>
-                    <p>Expiry Data: <%= item.expiry_date %></p>
-                </li>
-            <% }) %>
-        </ul>
+        <%- include("templates/header") %>
+        <div class="container">
+            <%- include("templates/navbar", {onDash: onDash}, {items: items}) %>
+            <main>
+                <section class="item-header">
+                    <h2><%= title.charAt(0).toUpperCase() + title.slice(1) %> Items</h2>
+                    <button class="add-item">
+                        <img src="/assets/images/plus-icon.svg" alt="add-item" height="25">
+                        <p>Add Item</p>
+                    </button>
+                </section>
+                <section class="category-table">
+                    <table>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Unit</th>
+                            <th>Expiry Date</th>
+                            <th>Actions</th>
+                        </tr>
+                        <% items.forEach((item) => { %>
+                            <tr>
+                                <td><%= item.name %></td>
+                                <td><%= item.quantity %></td>
+                                <td><%= item.unit %></td>
+                                <td><%= item.expiry_date %></td>
+                                <td>
+                                    <img src="/assets/images/delete-icon.png" alt="delete-item" height="25">
+                                    <img src="/assets/images/edit-icon.png" alt="edit-icon" height="25">
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </table>
+                </section>
+                <ul>
+                    
+                </ul>
+            </main>
+        </div>
     </body>
 </html>
