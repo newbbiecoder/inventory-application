@@ -9,7 +9,7 @@
             <%- include("templates/navbar", {onDash: onDash}) %>
             <main>
                 <section class="add-item-header">
-                    <h2><%= title %></h2>
+                    <h1><%= title %></h1>
                     <p>Use this form to add products to the inventory.</p>
                 </section>
                 <div class="form-container">
@@ -22,7 +22,7 @@
 
                         <div class="itemCategoryContainer">
                             <label for="itemCategory">Item Category</label>
-                            <select name="itemCategory" id="itemCategory" required>
+                            <select name="itemCategory" id="itemCategory" disabled>
                                 <option value="vegetables">Vegetables</option>
                                 <option value="fruits">Fruits</option>
                                 <option value="dairy">Dairy</option>
@@ -30,7 +30,24 @@
                                 <option value="snacks">Snacks</option>
                                 <option value="beverages">Beverages</option>
                             </select>
-                            <p>Vegetables are usually measured in kilograms or grams. Pieces for individual items like corn.</p>
+                            <% if(category === "vegetables") { %>
+                                <p>Usually measured in kilograms or grams. Pieces for individual items like corn.</p>
+                            <% } %>
+                            <% if(category === "fruits") { %>
+                                <p>Commonly tracked in kilograms or pieces. Use dozens for bulk fruits.</p>
+                            <% } %>
+                            <% if(category === "dairy") { %>
+                                <p>Typically measured in liters or milliliters. Pieces for packaged items.</p>
+                            <% } %>
+                            <% if(category === "grains") { %>
+                                <p>Best measured in kilograms or bags. Grams for small quantities.</p>
+                            <% } %>
+                            <% if(category === "snacks") { %>
+                                <p>Usually counted in pieces or packs. Boxes for bulk packaging.</p>
+                            <% } %>
+                            <% if(category === "beverages") { %>
+                                <p>Measured in liters or milliliters. Bottles or cans for packaged drinks.</p>
+                            <% } %>
                         </div>
 
                         <div class="quantity-unit-container">
@@ -95,21 +112,25 @@
 
                         <div class="submit-cancel-button">
                             <button type="submit">Add Item</button>
-                            <button class="cancelButton">Cancel</button>
+                            <a class="cancelButton" onclick="window.location.href='/categories/<%= category %>'">Cancel</a>
                         </div>
                     </form>
 
                     <div class="quick-tips">
                         <h3>Quick Tips</h3>
                         <ul>
-                            <li>Preferred units: Use 'kg' for most produce, 'liters' for liquids.</li>
-                            <li>Low-stock thresholds: Set alerts when quantity drops below 10% of typical stock.</li>
-                            <li>Expiry dates: Prioritize older stock to reduce waste and ensure freshness.</li>
-                            <li>Categorization: Ensure items are correctly categorized for better tracking.</li>
+                            <li><b>Category first:</b> Select the correct category before entering quantity and unit.</li>
+                            <li><b>Preferred units:</b> Use kg or pcs for produce, liters or ml for liquids.</li>
+                            <li><b>Expiry awareness:</b> Add expiry dates for perishable items to track freshness.</li>
+                            <li><b>Accurate quantities: </b>Enter realistic stock amounts to avoid false low-stock alerts.</li>
+                            <li><b>Accurate quantities:</b> Enter realistic stock amounts to avoid false low-stock alerts.</li>
                         </ul>
                     </div>
                 </div>
             </main>
         </div>
+        <footer>
+            © 2026 FreshStock. All rights reserved.
+        </footer>
     </body>
 </html>
