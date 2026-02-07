@@ -10,7 +10,7 @@
             <main>
                 <section class="item-header">
                     <h2><%= title.charAt(0).toUpperCase() + title.slice(1) %> Items</h2>
-                    <button class="add-item">
+                    <button class="add-item" onclick="window.location.href='/<%= title %>/new'">
                         <img src="/assets/images/plus-icon.svg" alt="add-item" height="25">
                         <p>Add Item</p>
                     </button>

@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+        <%- include('templates/header') %>
+        <div class="container">
+            <%- include("templates/navbar", {onDash: onDash}) %>
+            <main>
+                <section class="add-item-header">
+                    <h2><%= title %></h2>
+                    <p>Use this form to add products to the inventory.</p>
+                </section>
+                <div class="form-container">
+                    <form action="/<%= category %>/new" method="POST">
+                        <h3>Item Details</h3>
+                        <div class="itemNameContainer">
+                            <label for="itemName">Item Name</label>
+                            <input type="text" name="itemName" id="itemName" required>
+                        </div>
+
+                        <div class="itemCategoryContainer">
+                            <label for="itemCategory">Item Category</label>
+                            <select name="itemCategory" id="itemCategory" required>
+                                <option value="vegetables">Vegetables</option>
+                                <option value="fruits">Fruits</option>
+                                <option value="dairy">Dairy</option>
+                                <option value="grains">Grains</option>
+                                <option value="snacks">Snacks</option>
+                                <option value="beverages">Beverages</option>
+                            </select>
+                            <p>Vegetables are usually measured in kilograms or grams. Pieces for individual items like corn.</p>
+                        </div>
+
+                        <div class="quantity-unit-container">
+                            <div>
+                                <label for="quantity">Quantity</label>
+                                <input type="number" name="quantity" id="quantity" required>
+                            </div>
+                            <div>
+                                <label for="unit">Unit</label>
+                                <% if(category === "vegetables") { %>
+                                    <select name="unit" id="unit" required>
+                                        <option value="kg">kg</option>
+                                        <option value="bag">bag</option>
+                                        <option value="heads">heads</option>
+                                        <option value="pcs">pcs</option>
+                                        <option value="bunch">bunch</option>
+                                    </select>
+                                <% } %>
+                                <% if(category === "fruits") { %>
+                                    <select name="unit" id="unit" required>
+                                        <option value="kg">kg</option>
+                                        <option value="pcs">pcs</option>
+                                        <option value="dozen">dozen</option>
+                                    </select>
+                                <% } %>
+                                <% if(category === "dairy") { %>
+                                    <select name="unit" id="unit" required>
+                                        <option value="liters">liters</option>
+                                        <option value="cups">cups</option>
+                                        <option value="packs">packs</option>
+                                        <option value="blocks">blocks</option>
+                                        <option value="cartons">cartons</option>
+                                    </select>
+                                <% } %>
+                                <% if(category === "grains") { %>
+                                    <select name="unit" id="unit" required>
+                                        <option value="kg">kg</option>
+                                        <option value="bag">bag</option>
+                                        <option value="packs">packs</option>
+                                    </select>
+                                <% } %>
+                                <% if(category === "snacks") { %>
+                                    <select name="unit" id="unit" required>
+                                        <option value="packs">packs</option>
+                                        <option value="pcs">pcs</option>
+                                    </select>
+                                <% } %>
+                                <% if(category === "beverages") { %>
+                                    <select name="unit" id="unit" required>
+                                        <option value="liters">liters</option>
+                                        <option value="bottles">bottles</option>
+                                        <option value="cans">cans</option>
+                                    </select>
+                                <% } %>
+                            </div>
+                        </div>
+
+                        <div class="expiryDateContainer">
+                            <label for="expiryDate">Expiry Date (Optional)</label>
+                            <input type="date" name="expiryDate" id="expiryDate">
+                        </div>
+
+                        <div class="submit-cancel-button">
+                            <button type="submit">Add Item</button>
+                            <button class="cancelButton">Cancel</button>
+                        </div>
+                    </form>
+
+                    <div class="quick-tips">
+                        <h3>Quick Tips</h3>
+                        <ul>
+                            <li>Preferred units: Use 'kg' for most produce, 'liters' for liquids.</li>
+                            <li>Low-stock thresholds: Set alerts when quantity drops below 10% of typical stock.</li>
+                            <li>Expiry dates: Prioritize older stock to reduce waste and ensure freshness.</li>
+                            <li>Categorization: Ensure items are correctly categorized for better tracking.</li>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

@@ -24,7 +24,17 @@ async function categoryGet(req, res){
     })
 }
 
+function addItemGet(req, res) {
+    const {category} = req.params;
+    res.render("addItem", {
+        title: "Add New Item",
+        category: category,
+        onDash: false,
+    })
+}
+
 module.exports = {
     createDashboard,
-    categoryGet
+    categoryGet,
+    addItemGet
 }
