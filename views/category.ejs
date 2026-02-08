@@ -29,7 +29,7 @@
                                 <td class="itemStatus">
                                     <p><%= item.name %></p>
                                     <% if(item.expiryStatus) { %>
-                                        <p class="expiryStatus"><%= item.expiryStatus %></p>
+                                        <p class="<%= item.expiryStatus %>"><%= item.expiryStatus %></p>
                                     <% } %>
                                 </td>
                                 <td><%= item.quantity %></td>

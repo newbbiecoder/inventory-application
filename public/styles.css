@@ -255,13 +255,21 @@ table {
         margin: 0;
     }
 
-    .expiryStatus {
-        background: #EF43431A;
+    .Expiring-Soon, .Expired {
         border-radius: 6px;
         padding: 6px 12px 6px 12px;
         font-weight: 500;
         color: red;
         font-size: 13px;
+    }
+
+    .Expiring-Soon{
+        background: #fff7ed;
+        color: rgb(249, 50, 50);
+        
+    }
+    .Expired {
+        background: #EF43431A;
     }
 }
 

@@ -8,20 +8,17 @@ async function createDashboard(req, res) {
 }
 
 function checkExpiry(date) {
-    let todayDate = new Date()
-    let reformatedDate = todayDate.toISOString().split('T')[0];
+    if (!date) return "no-expiry";
 
-    var diff = Math.floor((Date.parse(reformatedDate) - Date.parse(date)) / 86400000);
-    console.log(date);
-    console.log(reformatedDate)
+    const today = new Date();
+    const expiry = new Date(date);
 
-    if(diff <= 0) {
-        return "Expired";
-    }
+    const diffInDays = Math.ceil(
+        (expiry - today) / (1000 * 60 * 60 * 24)
+    );
 
-    else if(diff <= 7) {
-        return "Expiring Soon";
-    }
+    if (diffInDays < 0) return "Expired";
+    if (diffInDays <= 7) return "Expiring-Soon";
 }
 
 async function categoryGet(req, res){
