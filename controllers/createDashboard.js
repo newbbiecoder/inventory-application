@@ -1,5 +1,25 @@
 const db = require("../db/queries");
 
+const LOW_STOCK_LIMITS = {
+  kg: 2,
+  liters: 2,
+  pcs: 5,
+  packs: 5,
+  bags: 2,
+  bottles: 6,
+  cans: 6,
+  bunch: 3,
+  heads: 3,
+  dozen: 5
+};
+
+function checkItemStock(quantity, unit) {
+  const limit = LOW_STOCK_LIMITS[unit];
+  if (!limit) return "In Stock";
+  return quantity < limit ? "Low Stock" : "In Stock";
+}
+
+
 async function createDashboard(req, res) {
     res.render("dashboard", {
         title: "Dashboard",
@@ -21,6 +41,7 @@ function checkExpiry(date) {
     if (diffInDays <= 7) return "Expiring-Soon";
 }
 
+
 async function categoryGet(req, res){
     const {slug} = req.params;
 
@@ -33,8 +54,10 @@ async function categoryGet(req, res){
 
     const itemsWithExpiry = items.map(item => ({
         ...item,
-        expiryStatus: checkExpiry(item.expiry_date)
-    }))
+        expiryStatus: checkExpiry(item.expiry_date),
+        stockStatus: checkItemStock(item.quantity, item.unit),
+        categoryName: category.name,
+    }));
 
     console.log(itemsWithExpiry)
 

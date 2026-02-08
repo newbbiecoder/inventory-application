@@ -25,11 +25,14 @@
                             <th>Actions</th>
                         </tr>
                         <% items.forEach((item) => { %>
-                            <tr>
+                            <tr class="<%= item.expiryStatus === 'Expired' ? 'expired-bg' : item.stockStatus === 'Low Stock' ? 'low-stock-bg' : '' %>">
                                 <td class="itemStatus">
                                     <p><%= item.name %></p>
-                                    <% if(item.expiryStatus) { %>
+                                    <% if(item.expiryStatus !== "no-expiry") { %>
                                         <p class="<%= item.expiryStatus %>"><%= item.expiryStatus %></p>
+                                    <% } %>
+                                    <% if(item.stockStatus !== "In Stock") { %>
+                                        <p class="stockStatus"><%= item.stockStatus %></p>
                                     <% } %>
                                 </td>
                                 <td><%= item.quantity %></td>
