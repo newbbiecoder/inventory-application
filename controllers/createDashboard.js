@@ -36,7 +36,8 @@ function addItemGet(req, res) {
 async function addItemPost(req, res) {
     const {itemName, quantity, unit, expiryDate} = req.body;
     const {category} = req.params;
-    console.log(category)
+    
+    const expiryDateValue = expiryDate ? expiryDate : null;
 
     const getCategoryArray = await db.getCategoryBySlug(category);
 
@@ -48,7 +49,7 @@ async function addItemPost(req, res) {
         itemName, 
         quantity, 
         unit, 
-        expiryDate, 
+        expiryDateValue, 
         getCategoryArray.id
     );
     res.redirect(`/categories/${category}`);

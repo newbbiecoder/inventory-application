@@ -29,7 +29,7 @@
                                 <td><%= item.name %></td>
                                 <td><%= item.quantity %></td>
                                 <td><%= item.unit %></td>
-                                <td><%= item.expiry_date %></td>
+                                <td><%= item.expiry_date ? item.expiry_date : "No expiry" %></td>
                                 <td>
                                     <img src="/assets/images/delete-icon.png" alt="delete-item" height="25">
                                     <img src="/assets/images/edit-icon.png" alt="edit-icon" height="25">

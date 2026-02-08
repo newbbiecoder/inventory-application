@@ -10,13 +10,13 @@ async function getItemsById(id) {
     return rows;
 }
 
-async function insertItems(itemName, quantity, unit, expiryDate, categoryId) {
+async function insertItems(itemName, quantity, unit, expiryDateValue, categoryId) {
     await pool.query(
         `
         INSERT INTO items (name, quantity, unit, expiry_date, category_id) 
         VALUES($1, $2, $3, $4, $5)
         `,
-        [itemName, quantity, unit, expiryDate, categoryId]
+        [itemName, quantity, unit, expiryDateValue, categoryId]
     );
 }
 
