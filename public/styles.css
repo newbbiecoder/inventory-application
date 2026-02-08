@@ -234,6 +234,7 @@ main {
 .category-table {
     margin-top: 4rem;
     margin-right: 4rem;
+
 }
 
 table {
@@ -243,6 +244,25 @@ table {
     border: 1px solid rgb(186, 181, 181);
     overflow: hidden;
     width: 100%;
+}
+
+.itemStatus{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    p {
+        margin: 0;
+    }
+
+    .expiryStatus {
+        background: #EF43431A;
+        border-radius: 6px;
+        padding: 6px 12px 6px 12px;
+        font-weight: 500;
+        color: red;
+        font-size: 13px;
+    }
 }
 
 td, th {

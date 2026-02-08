@@ -26,7 +26,12 @@
                         </tr>
                         <% items.forEach((item) => { %>
                             <tr>
-                                <td><%= item.name %></td>
+                                <td class="itemStatus">
+                                    <p><%= item.name %></p>
+                                    <% if(item.expiryStatus) { %>
+                                        <p class="expiryStatus"><%= item.expiryStatus %></p>
+                                    <% } %>
+                                </td>
                                 <td><%= item.quantity %></td>
                                 <td><%= item.unit %></td>
                                 <td><%= item.expiry_date ? item.expiry_date : "No expiry" %></td>

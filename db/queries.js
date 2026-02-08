@@ -20,8 +20,13 @@ async function insertItems(itemName, quantity, unit, expiryDateValue, categoryId
     );
 }
 
+async function getTotalItems() {
+    return await pool.query("SELECT COUNT(*) FROM items");
+}
+
 module.exports = {
     getCategoryBySlug,
     getItemsById,
-    insertItems
+    insertItems,
+    getTotalItems,
 }

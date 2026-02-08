@@ -1,10 +1,27 @@
 const db = require("../db/queries");
 
-function createDashboard(req, res) {
+async function createDashboard(req, res) {
     res.render("dashboard", {
         title: "Dashboard",
         onDash: true,
     })
+}
+
+function checkExpiry(date) {
+    let todayDate = new Date()
+    let reformatedDate = todayDate.toISOString().split('T')[0];
+
+    var diff = Math.floor((Date.parse(reformatedDate) - Date.parse(date)) / 86400000);
+    console.log(date);
+    console.log(reformatedDate)
+
+    if(diff <= 0) {
+        return "Expired";
+    }
+
+    else if(diff <= 7) {
+        return "Expiring Soon";
+    }
 }
 
 async function categoryGet(req, res){
@@ -16,10 +33,17 @@ async function categoryGet(req, res){
         return res.status(404).send("OOPS! Couldn't find the category!");
     }
     const items = await db.getItemsById(category.id);
-    console.log(items)
+
+    const itemsWithExpiry = items.map(item => ({
+        ...item,
+        expiryStatus: checkExpiry(item.expiry_date)
+    }))
+
+    console.log(itemsWithExpiry)
+
     res.render("category", {
         title: slug,
-        items: items,
+        items: itemsWithExpiry,
         onDash: false,
     })
 }
