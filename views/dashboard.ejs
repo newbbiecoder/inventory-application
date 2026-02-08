@@ -24,7 +24,7 @@
                                 <p>Total items in inventory</p>
                                 <img src="assets/images/total-items-icon.png" alt="total-items" height="35">
                             </div>
-                            <p>42</p>
+                            <p><%= totalItems %></p>
                         </article>
 
                         <article class="low-stock-count">
@@ -32,7 +32,7 @@
                                 <p>Low-stock items</p>
                                 <img src="assets/images/low-stock-icon.png" alt="low-stock" height="35">
                             </div>
-                            <p>5</p>
+                            <p><%= lowStockCount %></p>
                         </article>
 
                         <article class="expiring-soon-count">
@@ -40,28 +40,34 @@
                                 <p>Expiring soon</p>
                                 <img src="assets/images/expiring-soon-icon.png" alt="expiring-soon" height="35">
                             </div>
-                            <p>3</p>
+                            <p><%= expiringSoonCount %></p>
                         </article>
                     </div>
                 </section>
                 <section class="low-stock-items">
                     <h2>Low Stock Items</h2>
                     <div>
-                        <article>
-                            <p>Cherry Tomatoes — 4 kg</p>
-                            <p>Low Stock</p>
-                        </article>
-                        <article>
-                            <p>Greek Yogurt — 6 tubs</p>
-                            <p>Low Stock</p>
-                        </article>
+                        <% lowStockItems.forEach(item => { %>
+                            <article>
+                                <p><%= item.name %> — <%= item.quantity %> <%= item.unit %></p>
+                                <p class="lowStockDashStatus">Low Stock</p>
+                            </article>
+                        <% }) %>
                     </div>
                 </section>
                 <section class="recently-added-items">
-                    <h2>Recently Added Items</h2>
+                    <h2>Expiring Soon Items</h2>
                     <div>
-                        <article>Organic Bananas — 12 pcs</article>
-                        <article>Basmati Rice 5kg — 8 bags</article>
+                        <% expiringSoonItems.forEach(item => { %>
+                            <article>
+                                <p><%= item.name %> — <%= item.quantity %> <%= item.unit %></p>
+                                <p class="expiringSoonDashStatus">Expiring Soon</p>
+                            </article>
+                            <article>
+                                <p><%= item.name %> — <%= item.quantity %> <%= item.unit %></p>
+                                <p class="expiringSoonDashStatus">Expiring Soon</p>
+                            </article>
+                        <% }) %>
                     </div>
                 </section>
             </main>

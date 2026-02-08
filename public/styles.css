@@ -207,10 +207,12 @@ main {
             max-width: 82%;
             border-radius: 15px;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            margin-bottom: 1.5rem;
 
             article {
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 p {
                     margin: 0;
                 }
@@ -229,6 +231,20 @@ main {
         }
         
     }
+}
+
+.lowStockDashStatus, .expiringSoonDashStatus {
+    border-radius: 10px;
+    padding: 6px 12px 6px 12px;
+    font-weight: 400;
+    color: red;
+    font-size: 15px;
+    background-color: #FEE2E2;
+}
+
+.expiringSoonDashStatus {
+    background: #fff7ed;
+    color: rgb(249, 50, 50);
 }
 
 .category-table {
@@ -255,15 +271,17 @@ table {
 }
 
 .itemStatus{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
 
     p {
         margin: 0;
     }
 
-    .Expiring-Soon, .Expired, .stockStatus {
+    .Expiring-Soon, .Expired, .stockStatus{
         border-radius: 6px;
         padding: 6px 12px 6px 12px;
         font-weight: 500;
@@ -290,15 +308,11 @@ td, th {
     border-bottom: 1px solid #e5e7eb;
 }
 
-tr {
-    border-bottom: 1px solid rgb(186, 181, 181);
-}
-
 th:last-child, td:last-child {
     text-align: center;
 }
 
-td:last-child {
+.action-buttons {
     display: flex;
     justify-content: center;
     align-items: center;

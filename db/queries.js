@@ -1,5 +1,10 @@
 const pool = require("./pool");
 
+async function getAllItems() {
+    const {rows} = await pool.query("SELECT * FROM items");
+    return rows;
+}
+
 async function getCategoryBySlug(slug) {
     const {rows} = await pool.query("SELECT * FROM categories WHERE name = $1", [slug]);
     return rows[0];
@@ -21,10 +26,12 @@ async function insertItems(itemName, quantity, unit, expiryDateValue, categoryId
 }
 
 async function getTotalItems() {
-    return await pool.query("SELECT COUNT(*) FROM items");
+    const {rows} = await pool.query("SELECT COUNT(*) FROM items");
+    return rows[0].count;
 }
 
 module.exports = {
+    getAllItems,
     getCategoryBySlug,
     getItemsById,
     insertItems,

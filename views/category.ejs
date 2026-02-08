@@ -17,39 +17,47 @@
                 </section>
                 <section class="category-table">
                     <table>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Quantity</th>
-                            <th>Unit</th>
-                            <th>Expiry Date</th>
-                            <th>Actions</th>
-                        </tr>
-                        <% items.forEach((item) => { %>
-                            <tr class="<%= item.expiryStatus === 'Expired' ? 'expired-bg' : item.stockStatus === 'Low Stock' ? 'low-stock-bg' : '' %>">
-                                <td class="itemStatus">
-                                    <p><%= item.name %></p>
-                                    <% if(item.expiryStatus !== "no-expiry") { %>
-                                        <p class="<%= item.expiryStatus %>"><%= item.expiryStatus %></p>
-                                    <% } %>
-                                    <% if(item.stockStatus !== "In Stock") { %>
-                                        <p class="stockStatus"><%= item.stockStatus %></p>
-                                    <% } %>
-                                </td>
-                                <td><%= item.quantity %></td>
-                                <td><%= item.unit %></td>
-                                <td><%= item.expiry_date ? item.expiry_date : "No expiry" %></td>
-                                <td>
-                                    <img src="/assets/images/delete-icon.png" alt="delete-item" height="25">
-                                    <img src="/assets/images/edit-icon.png" alt="edit-icon" height="25">
-                                </td>
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Unit</th>
+                                <th>Expiry Date</th>
+                                <th>Actions</th>
                             </tr>
-                        <% }) %>
+                        </thead>
+                        <tbody>
+                            <% items.forEach((item) => { %>
+                                <tr class="<%= item.expiryStatus === 'Expired' ? 'expired-bg' : item.stockStatus === 'Low Stock' ? 'low-stock-bg' : '' %>">
+                                    <td class="itemStatus">
+                                        <div>
+                                            <p><%= item.name %></p>
+                                            <% if(item.expiryStatus !== "no-expiry") { %>
+                                                <p class="<%= item.expiryStatus %>"><%= item.expiryStatus %></p>
+                                            <% } %>
+                                            <% if(item.stockStatus !== "In Stock") { %>
+                                                <p class="stockStatus"><%= item.stockStatus %></p>
+                                            <% } %>
+                                        </div>
+                                    </td>
+                                    <td><%= item.quantity %></td>
+                                    <td><%= item.unit %></td>
+                                    <td><%= item.expiry_date ? item.expiry_date : "No expiry" %></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <img src="/assets/images/delete-icon.png" alt="delete-item" height="25">
+                                            <img src="/assets/images/edit-icon.png" alt="edit-icon" height="25">
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
                     </table>
                 </section>
-                <ul>
-                    
-                </ul>
             </main>
         </div>
+        <footer>
+            © 2026 FreshStock. All rights reserved.
+        </footer>
     </body>
 </html>

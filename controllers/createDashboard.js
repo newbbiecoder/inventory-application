@@ -19,14 +19,6 @@ function checkItemStock(quantity, unit) {
   return quantity < limit ? "Low Stock" : "In Stock";
 }
 
-
-async function createDashboard(req, res) {
-    res.render("dashboard", {
-        title: "Dashboard",
-        onDash: true,
-    })
-}
-
 function checkExpiry(date) {
     if (!date) return "no-expiry";
 
@@ -41,6 +33,30 @@ function checkExpiry(date) {
     if (diffInDays <= 7) return "Expiring-Soon";
 }
 
+
+async function createDashboard(req, res) {
+    const items = await db.getAllItems();
+    const totalItems = await db.getTotalItems();
+    console.log(totalItems)
+
+    const lowStockItems = items.filter(
+        item => checkItemStock(item.quantity, item.unit) === "Low Stock"
+    );
+    
+    const expiringSoonItems = items.filter(
+        item => checkExpiry(item.expiry_date) === "Expiring-Soon"
+    );
+
+    res.render("dashboard", {
+        title: "Dashboard",
+        onDash: true,
+        totalItems: totalItems,
+        lowStockItems: lowStockItems,
+        lowStockCount: lowStockItems.length,
+        expiringSoonItems: expiringSoonItems,
+        expiringSoonCount: expiringSoonItems.length
+    })
+}
 
 async function categoryGet(req, res){
     const {slug} = req.params;
