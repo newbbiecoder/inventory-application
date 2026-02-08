@@ -328,6 +328,16 @@ th {
             }
         }
 
+        .quantity-unit-container {
+            input[type=number]::-webkit-inner-spin-button, 
+            input[type=number]::-webkit-outer-spin-button { 
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                margin: 0; 
+            }
+        }
+
         .submit-cancel-button {
             display: flex;
             flex-direction: row;

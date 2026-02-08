@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 async function getCategoryBySlug(slug) {
     const {rows} = await pool.query("SELECT * FROM categories WHERE name = $1", [slug]);
-    return rows;
+    return rows[0];
 }
 
 async function getItemsById(id) {
@@ -10,7 +10,18 @@ async function getItemsById(id) {
     return rows;
 }
 
+async function insertItems(itemName, quantity, unit, expiryDate, categoryId) {
+    await pool.query(
+        `
+        INSERT INTO items (name, quantity, unit, expiry_date, category_id) 
+        VALUES($1, $2, $3, $4, $5)
+        `,
+        [itemName, quantity, unit, expiryDate, categoryId]
+    );
+}
+
 module.exports = {
     getCategoryBySlug,
-    getItemsById
+    getItemsById,
+    insertItems
 }
