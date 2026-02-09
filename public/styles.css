@@ -234,6 +234,7 @@ main {
 }
 
 .lowStockDashStatus, .expiringSoonDashStatus {
+    cursor: default;
     border-radius: 10px;
     padding: 6px 12px 6px 12px;
     font-weight: 400;
@@ -318,6 +319,16 @@ th:last-child, td:last-child {
     align-items: center;
     gap: 0.85rem;
 
+    form {
+        margin-bottom: 0;
+    }
+
+    button {
+        border: none;
+        background: none;
+        padding: 0;
+    }
+
     img {
         cursor: pointer;
     }
@@ -392,7 +403,7 @@ th {
             }
         }
 
-        .submit-cancel-button {
+        .submit-cancel-button, .update-cancel-button {
             display: flex;
             flex-direction: row;
             gap: 1.5rem;

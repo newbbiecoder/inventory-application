@@ -13,6 +13,15 @@ const LOW_STOCK_LIMITS = {
   dozen: 5
 };
 
+const categories = {
+    1: "vegetables",
+    2: "fruits",
+    3: "dairy",
+    4: "grains",
+    5: "snacks",
+    6: "beverages",
+}
+
 function checkItemStock(quantity, unit) {
   const limit = LOW_STOCK_LIMITS[unit];
   if (!limit) return "In Stock";
@@ -115,9 +124,46 @@ async function addItemPost(req, res) {
     res.redirect(`/categories/${category}`);
 }
 
+async function deleteItemGet(req, res) {
+    const itemId = req.params.id;
+
+    const categoryId = req.params.category_id;
+
+    await db.deleteItemById(itemId);
+    res.redirect(`/categories/${categories[categoryId]}`)
+}
+
+async function updateItemsGet(req, res) {
+    const id = req.params.id;
+    const categoryId = req.params.category_id;
+
+    const item = await db.getItemById(id);
+    console.log(item);
+
+    res.render("updateItem", {
+        title: "Update Item",
+        item: item,
+        category: categories[categoryId],
+        onDash: false,
+    })
+}
+
+async function updateItemsPost(req, res) {
+    const {id, category_id} = req.params;
+
+    const {itemName, quantity, unit, expiryDate} = req.body;
+    
+    await db.updateItemById(itemName, quantity, unit, expiryDate, id);
+
+    res.redirect(`/categories/${categories[category_id]}`)
+}
+
 module.exports = {
     createDashboard,
     categoryGet,
     addItemGet,
-    addItemPost
+    addItemPost,
+    deleteItemGet,
+    updateItemsGet,
+    updateItemsPost
 }

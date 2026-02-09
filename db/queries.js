@@ -10,9 +10,14 @@ async function getCategoryBySlug(slug) {
     return rows[0];
 }
 
-async function getItemsById(id) {
-    const {rows} = await pool.query("SELECT * FROM items WHERE category_id = $1", [id]);
+async function getItemsById(category_id) {
+    const {rows} = await pool.query("SELECT * FROM items WHERE category_id = $1", [category_id]);
     return rows;
+}
+
+async function getItemById(id) {
+    const {rows} = await pool.query("SELECT * FROM items WHERE id = $1", [id]);
+    return rows[0];
 }
 
 async function insertItems(itemName, quantity, unit, expiryDateValue, categoryId) {
@@ -30,10 +35,31 @@ async function getTotalItems() {
     return rows[0].count;
 }
 
+async function deleteItemById(id) {
+    await pool.query("DELETE FROM items WHERE id = $1", [id]);
+}
+
+async function updateItemById(itemName, quantity, unit, expiryDate, id) {
+    await pool.query(
+        `
+        UPDATE items
+        SET name = $1,
+        quantity = $2,
+        unit = $3,
+        expiry_date = $4
+        WHERE id = $5
+        `,
+        [itemName, quantity, unit, expiryDate || null, id]
+    );
+}
+
 module.exports = {
     getAllItems,
     getCategoryBySlug,
     getItemsById,
+    getItemById,
     insertItems,
     getTotalItems,
+    deleteItemById,
+    updateItemById
 }

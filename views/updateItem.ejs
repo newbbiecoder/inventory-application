@@ -13,22 +13,22 @@
                     <p>Use this form to add products to the inventory.</p>
                 </section>
                 <div class="form-container">
-                    <form action="/<%= category %>/new" method="POST">
+                    <form action="/<%= item.id %>/<%= item.category_id %>/update" method="POST">
                         <h3>Item Details</h3>
                         <div class="itemNameContainer">
                             <label for="itemName">Item Name</label>
-                            <input type="text" name="itemName" id="itemName" required>
+                            <input type="text" name="itemName" id="itemName" value="<%= item.name %>" required>
                         </div>
 
                         <div class="itemCategoryContainer">
                             <label for="itemCategory">Item Category</label>
                             <select name="itemCategory" id="itemCategory" disabled>
-                                <option value="vegetables">Vegetables</option>
-                                <option value="fruits">Fruits</option>
-                                <option value="dairy">Dairy</option>
-                                <option value="grains">Grains</option>
-                                <option value="snacks">Snacks</option>
-                                <option value="beverages">Beverages</option>
+                                <option value="vegetables" <%= category === "vegetables" ? 'selected' : '' %>>Vegetables</option>
+                                <option value="fruits" <%= category === "fruits" ? 'selected' : '' %>>Fruits</option>
+                                <option value="dairy" <%= category === "dairy" ? 'selected' : '' %>>Dairy</option>
+                                <option value="grains" <%= category === "grains" ? 'selected' : '' %>>Grains</option>
+                                <option value="snacks" <%= category === "snacks" ? 'selected' : '' %>>Snacks</option>
+                                <option value="beverages" <%= category === "beverages" ? 'selected' : '' %>>Beverages</option>
                             </select>
                             <% if(category === "vegetables") { %>
                                 <p>Usually measured in kilograms or grams. Pieces for individual items like corn.</p>
@@ -53,53 +53,53 @@
                         <div class="quantity-unit-container">
                             <div>
                                 <label for="quantity">Quantity</label>
-                                <input type="number" name="quantity" id="quantity" required>
+                                <input type="number" name="quantity" id="quantity" value="<%= item.quantity %>" required>
                             </div>
                             <div>
                                 <label for="unit">Unit</label>
                                 <% if(category === "vegetables") { %>
                                     <select name="unit" id="unit" required>
-                                        <option value="kg">kg</option>
-                                        <option value="bags">bags</option>
-                                        <option value="heads">heads</option>
-                                        <option value="pcs">pcs</option>
-                                        <option value="bunch">bunch</option>
+                                        <option value="kg" <%= item.unit === "kg" ? 'selected' : '' %>>kg</option>
+                                        <option value="bags" <%= item.unit === "bags" ? 'selected' : '' %>>bags</option>
+                                        <option value="heads" <%= item.unit === "heads" ? 'selected' : '' %>>heads</option>
+                                        <option value="pcs" <%= item.unit === "pcs" ? 'selected' : '' %>>pcs</option>
+                                        <option value="bunch" <%= item.unit === "bunch" ? 'selected' : '' %>>bunch</option>
                                     </select>
                                 <% } %>
                                 <% if(category === "fruits") { %>
                                     <select name="unit" id="unit" required>
-                                        <option value="kg">kg</option>
-                                        <option value="pcs">pcs</option>
-                                        <option value="dozen">dozen</option>
+                                        <option value="kg" <%= item.unit === "kg" ? 'selected' : '' %>>kg</option>
+                                        <option value="pcs" <%= item.unit === "pcs" ? 'selected' : '' %>>pcs</option>
+                                        <option value="dozen" <%= item.unit === "dozen" ? 'selected' : ''%>>dozen</option>
                                     </select>
                                 <% } %>
                                 <% if(category === "dairy") { %>
                                     <select name="unit" id="unit" required>
-                                        <option value="liters">liters</option>
-                                        <option value="cups">cups</option>
-                                        <option value="packs">packs</option>
-                                        <option value="blocks">blocks</option>
-                                        <option value="cartons">cartons</option>
+                                        <option value="liters" <%= item.unit === "liters" ? 'selected' : ''%>>liters</option>
+                                        <option value="cups" <%= item.unit === "cups" ? 'selected' : '' %>>cups</option>
+                                        <option value="packs" <%= item.unit === "packs" ? 'selected' : '' %>>packs</option>
+                                        <option value="blocks" <%= item.unit === "blocks" ? 'selected' : '' %>>blocks</option>
+                                        <option value="cartons" <%= item.unit === "cartons" ? 'selected' : '' %>>cartons</option>
                                     </select>
                                 <% } %>
-                                <% if(category === "grains") { %>
+                                <% if(category === "grains"){ %>
                                     <select name="unit" id="unit" required>
-                                        <option value="kg">kg</option>
-                                        <option value="bags">bags</option>
-                                        <option value="packs">packs</option>
+                                        <option value="kg" <%= item.unit === "kg" ? 'selected' : '' %>>kg</option>
+                                        <option value="bags" <%= item.unit === "bags" ? 'selected' : '' %>>bags</option>
+                                        <option value="packs" <%= item.unit === "packs" ? 'selected' : '' %>>packs</option>
                                     </select>
                                 <% } %>
                                 <% if(category === "snacks") { %>
                                     <select name="unit" id="unit" required>
-                                        <option value="packs">packs</option>
-                                        <option value="pcs">pcs</option>
+                                        <option value="packs" <%= item.unit === "packs" ? 'selected' : '' %>>packs</option>
+                                        <option value="pcs" <%= item.unit === "pcs" ? 'selected' : '' %>>pcs</option>
                                     </select>
                                 <% } %>
                                 <% if(category === "beverages") { %>
                                     <select name="unit" id="unit" required>
-                                        <option value="liters">liters</option>
-                                        <option value="bottles">bottles</option>
-                                        <option value="cans">cans</option>
+                                        <option value="liters" <%= item.unit === "liters" ? 'selected' : '' %>>liters</option>
+                                        <option value="bottles" <%= item.unit === "bottles" ? 'selected' : '' %>>bottles</option>
+                                        <option value="cans" <%= item.unit === "cans" ? 'selected' : '' %>>cans</option>
                                     </select>
                                 <% } %>
                             </div>
@@ -107,11 +107,11 @@
 
                         <div class="expiryDateContainer">
                             <label for="expiryDate">Expiry Date (Optional)</label>
-                            <input type="date" name="expiryDate" id="expiryDate">
+                            <input type="date" name="expiryDate" id="expiryDate" value="<%= item.expiry_date %>">
                         </div>
 
-                        <div class="submit-cancel-button">
-                            <button type="submit">Add Item</button>
+                        <div class="update-cancel-button">
+                            <button type="submit">Update Item</button>
                             <a class="cancelButton" onclick="window.location.href='/categories/<%= category %>'">Cancel</a>
                         </div>
                     </form>
