@@ -46,7 +46,6 @@ function checkExpiry(date) {
 async function createDashboard(req, res) {
     const items = await db.getAllItems();
     const totalItems = await db.getTotalItems();
-    console.log(totalItems)
 
     const lowStockItems = items.filter(
         item => checkItemStock(item.quantity, item.unit) === "Low Stock"
@@ -72,8 +71,8 @@ async function categoryGet(req, res){
 
     const category = await db.getCategoryBySlug(slug);
 
-    if(category.length === 0) {
-        return res.status(404).send("OOPS! Couldn't find the category!");
+    if(!category) {
+        return res.status(404).send(`OOPS! Couldn't find the category ${slug}!`);
     }
     const items = await db.getItemsById(category.id);
 
@@ -83,8 +82,6 @@ async function categoryGet(req, res){
         stockStatus: checkItemStock(item.quantity, item.unit),
         categoryName: category.name,
     }));
-
-    console.log(itemsWithExpiry)
 
     res.render("category", {
         title: slug,
@@ -138,7 +135,10 @@ async function updateItemsGet(req, res) {
     const categoryId = req.params.category_id;
 
     const item = await db.getItemById(id);
-    console.log(item);
+
+    if(!item) {
+        return res.status(404).send("Where the hell are we again??")
+    }
 
     res.render("updateItem", {
         title: "Update Item",
