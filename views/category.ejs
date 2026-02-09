@@ -2,11 +2,24 @@
     <head>
         <title><%= title %></title>
         <link rel="stylesheet" href="/styles.css">
+        <script>
+            function handleAuth(formElement) {
+                const password = prompt("Please enter the Admin Password to delete this item: ");
+
+                if(password === null || password.trim() === "") {
+                    return false;
+                }
+
+                formElement.querySelector('input[name="adminPassword"]').value = password;
+
+                return true;
+            }
+        </script>
     </head>
     <body>
         <%- include("templates/header") %>
         <div class="container">
-            <%- include("templates/navbar", {onDash: onDash}, {items: items}) %>
+            <%- include("templates/navbar", {onDash: onDash}) %>
             <main>
                 <section class="item-header">
                     <h2><%= title.charAt(0).toUpperCase() + title.slice(1) %> Items</h2>
@@ -45,8 +58,9 @@
                                     <td><%= item.expiry_date ? item.expiry_date : "No expiry" %></td>
                                     <td>
                                         <div class="action-buttons">
-                                            <form action="/<%= item.id %>/<%= item.category_id %>/delete" method="POST">
-                                                <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')">
+                                            <form action="/<%= item.id %>/<%= item.category_id %>/delete" method="POST" onsubmit="return handleAuth(this)">
+                                                <input type="hidden" name="adminPassword" id="adminPassword_<%= item.id %>">
+                                                <button type="submit">
                                                     <img src="/assets/images/delete-icon.png" alt="delete-item" height="25">
                                                 </button>
                                             </form>

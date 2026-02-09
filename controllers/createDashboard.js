@@ -121,13 +121,24 @@ async function addItemPost(req, res) {
     res.redirect(`/categories/${category}`);
 }
 
-async function deleteItemGet(req, res) {
+async function deleteItemPost(req, res) {
     const itemId = req.params.id;
-
     const categoryId = req.params.category_id;
+    const adminPassword = req.body.adminPassword;
 
-    await db.deleteItemById(itemId);
-    res.redirect(`/categories/${categories[categoryId]}`)
+    if(adminPassword === process.env.ADMIN_PASS) {
+        await db.deleteItemById(itemId);
+        res.redirect(`/categories/${categories[categoryId]}`)
+    }
+    else {
+        return res.send(`
+            <script>
+                alert("Incorrect Admin Password. Access Denied.");
+                window.history.back();
+            </script>
+        `);
+    }
+    
 }
 
 async function updateItemsGet(req, res) {
@@ -163,7 +174,7 @@ module.exports = {
     categoryGet,
     addItemGet,
     addItemPost,
-    deleteItemGet,
+    deleteItemPost,
     updateItemsGet,
     updateItemsPost
 }
