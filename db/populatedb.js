@@ -4,7 +4,7 @@ require("dotenv").config({path: 'database.env'});
 const SQL = `
 CREATE TABLE IF NOT EXISTS categories(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR (255) NOT NULL
+    name VARCHAR (255) NOT NULL UNIQUE
 );
 CREATE TABLE IF NOT EXISTS items(  
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
