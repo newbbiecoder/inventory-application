@@ -23,12 +23,12 @@
                         <div class="itemCategoryContainer">
                             <label for="itemCategory">Item Category</label>
                             <select name="itemCategory" id="itemCategory" disabled>
-                                <option value="vegetables">Vegetables</option>
-                                <option value="fruits">Fruits</option>
-                                <option value="dairy">Dairy</option>
-                                <option value="grains">Grains</option>
-                                <option value="snacks">Snacks</option>
-                                <option value="beverages">Beverages</option>
+                                <option value="vegetables" <%= category === "vegetables" ? 'selected' : '' %>>Vegetables</option>
+                                <option value="fruits" <%= category === "fruits" ? 'selected' : '' %>>Fruits</option>
+                                <option value="dairy" <%= category === "dairy" ? 'selected' : '' %>>Dairy</option>
+                                <option value="grains" <%= category === "grains" ? 'selected' : '' %>>Grains</option>
+                                <option value="snacks" <%= category === "snacks" ? 'selected' : '' %>>Snacks</option>
+                                <option value="beverages" <%= category === "beverages" ? 'selected' : '' %>>Beverages</option>
                             </select>
                             <% if(category === "vegetables") { %>
                                 <p>Usually measured in kilograms or grams. Pieces for individual items like corn.</p>
