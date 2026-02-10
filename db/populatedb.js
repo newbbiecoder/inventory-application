@@ -2,14 +2,11 @@ const {Client} = require("pg");
 require("dotenv").config({path: 'database.env'});
 
 const SQL = `
-DROP TABLE IF EXISTS items CASCADE;
-DROP TABLE IF EXISTS categories CASCADE;
-
-CREATE TABLE categories(
+CREATE TABLE IF NOT EXISTS categories(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR (255) NOT NULL UNIQUE
 );
-CREATE TABLE items(  
+CREATE TABLE IF NOT EXISTS items(  
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR (255) NOT NULL,
     quantity INTEGER NOT NULL,
