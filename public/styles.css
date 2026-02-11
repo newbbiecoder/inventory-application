@@ -494,3 +494,15 @@ footer {
         }
     }
 }
+
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+
+    .form-container {
+
+        .quick-tips {
+            display: none;
+        }
+    }
+}
