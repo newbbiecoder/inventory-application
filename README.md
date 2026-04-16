@@ -5,6 +5,8 @@ The application allows managing categories and items, tracking stock levels, and
 
 This project was built to practice **database design**, **CRUD operations**, and **Express routing**, while keeping the UI practical and realistic.
 
+Check it out live at --> https://inventory-application-vwew.onrender.com/
+
 ---
 
 ## Features
